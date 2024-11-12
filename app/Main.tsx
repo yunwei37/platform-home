@@ -1,15 +1,39 @@
+'use client'
+
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
+import { useState, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 const MAX_DISPLAY = 5
 
 export default function Home({ posts }) {
+  const [readmeContent, setReadmeContent] = useState('')
+
+  useEffect(() => {
+    const fetchReadme = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/transTerminus/trans-digital-cn/refs/heads/main/README.md')
+        const text = await response.text()
+        setReadmeContent(text)
+      } catch (error) {
+        console.error('Error fetching README:', error)
+      }
+    }
+    fetchReadme()
+  }, [])
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
+        {readmeContent && (
+          <div className="prose dark:prose-dark max-w-none pb-8">
+            <ReactMarkdown>{readmeContent}</ReactMarkdown>
+          </div>
+        )}
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Latest
