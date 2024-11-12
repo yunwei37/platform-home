@@ -29,11 +29,21 @@ export default function Home({ posts }) {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        {readmeContent && (
-          <div className="prose dark:prose-dark max-w-none pb-8">
-            <ReactMarkdown>{readmeContent}</ReactMarkdown>
-          </div>
-        )}
+        <div className="prose dark:prose-dark max-w-none pt-8 pb-8">
+          <ReactMarkdown
+            components={{
+              // Add custom styling for markdown elements
+              p: ({node, ...props}) => <p className="text-gray-900 dark:text-gray-100" {...props} />,
+              a: ({node, ...props}) => <a className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" {...props} />,
+              h1: ({node, ...props}) => <h1 className="text-gray-900 dark:text-gray-100" {...props} />,
+              h2: ({node, ...props}) => <h2 className="text-gray-900 dark:text-gray-100" {...props} />,
+              h3: ({node, ...props}) => <h3 className="text-gray-900 dark:text-gray-100" {...props} />,
+              code: ({node, ...props}) => <code className="bg-gray-100 dark:bg-gray-800" {...props} />,
+            }}
+          >
+            {readmeContent}
+          </ReactMarkdown>
+        </div>
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Latest
