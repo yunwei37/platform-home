@@ -17,7 +17,29 @@ const components = {
       {props.children}
     </a>
   ),
+  h1: ({ node, ...props }) => (
+    <h1 className="text-gray-900 dark:text-gray-100" {...props}>
+      {props.children}
+    </h1>
+  ),
+  h2: ({ node, ...props }) => (
+    <h2 className="text-gray-900 dark:text-gray-100" {...props}>
+      {props.children}
+    </h2>
+  ),
+  li: ({ node, ordered, ...props }) => (
+    <li className="text-gray-900 dark:text-gray-100" {...props}>
+      {props.children}
+    </li>
+  ),
+  ul: ({ node, ordered, ...props }) => (
+    <ul className="text-gray-900 dark:text-gray-100" {...props}>
+      {props.children}
+    </ul>
+  ),
+  // Add other markdown elements as needed
 }
+
 export default function Home({ posts }) {
   const [readmeContent, setReadmeContent] = useState('')
 
