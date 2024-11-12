@@ -7,20 +7,16 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: '文档与各类资料存档库',
+    description: `保存各类文档、资料、书籍、论文、报告、演示文稿等与跨性别相关的独立文件，方便查找、下载、分享。`,
+    imgSrc: '/static/images/time-machine.jpg',
+    href: 'https://digital.transchinese.org/',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
+    title: '新闻网页存档库',
+    description: `保存各类新闻网页存档和相关图片。`,
     imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    href: 'https://news.transchinese.org/',
   },
 ]
 
