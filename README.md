@@ -16,8 +16,6 @@ Check out the documentation below to get started.
 
 Facing issues? Check the [FAQ page](https://github.com/timlrx/tailwind-nextjs-starter-blog/wiki) and do a search on past issues. Feel free to open a new issue if none has been posted previously.
 
-Feature request? Check the past discussions to see if it has been brought up previously. Otherwise, feel free to start a new discussion thread. All ideas are welcomed!
-
 ## Variations
 
 **Note**: These are community contributed forks using different frameworks or with significant changes to the codebase - not officially supported.
