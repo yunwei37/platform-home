@@ -1,17 +1,8 @@
 // page.tsx
 'use client'
-import { useState } from 'react'
+import UrlCrawlingSection from '@/components/UrlCrawlingSection'
 
 export default function DataInputPage() {
-  const [url, setUrl] = useState('')
-  const [loading, setLoading] = useState(false)
-
-  const handleCrawl = async () => {
-    setLoading(true)
-    // Crawling logic will be implemented later
-    setLoading(false)
-  }
-
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     // File handling logic will be implemented later
@@ -42,25 +33,7 @@ export default function DataInputPage() {
 
       <div className="space-y-8">
         {/* URL Crawling Section */}
-        <div className="rounded-lg bg-white p-6 shadow">
-          <h2 className="mb-4 text-xl font-semibold">网站存档</h2>
-          <div className="flex gap-4">
-            <input
-              type="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="Enter website URL"
-              className="flex-1 rounded border px-4 py-2"
-            />
-            <button
-              onClick={handleCrawl}
-              disabled={loading}
-              className="rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
-            >
-              {loading ? 'Crawling...' : 'Start Crawl'}
-            </button>
-          </div>
-        </div>
+        <UrlCrawlingSection />
 
         {/* File Upload Section */}
         <div className="rounded-lg bg-white p-6">
