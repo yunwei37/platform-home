@@ -31,6 +31,7 @@
     "next": "15.0.2",
     "next-contentlayer2": "0.5.3",
     "next-themes": "^0.3.0",
+    "openai": "^4.72.0",
     "pliny": "^0.4.0",
     "postcss": "^8.4.24",
     "react": "rc",
