@@ -12,7 +12,7 @@ Instructions:
 - Improve readability
 - Maintain the original meaning
 - Remove redundant information
-- Ensure proper markdown syntax`;
+- Ensure proper markdown syntax`
 
     const response = await fetch('/api/genstruct', {
       method: 'POST',
@@ -22,17 +22,17 @@ Instructions:
       body: JSON.stringify({
         markdown,
       }),
-    });
+    })
 
     if (!response.ok) {
-      throw new Error(`Failed to clean content: ${response.statusText}`);
+      throw new Error(`Failed to clean content: ${response.statusText}`)
     }
 
-    const data = await response.json();
-    return data;
+    const data = await response.json()
+    return data
   } catch (error) {
-    console.error('Error cleaning content:', error);
-    throw new Error(`Failed to clean content: ${error.message}`);
+    console.error('Error cleaning content:', error)
+    throw new Error(`Failed to clean content: ${error.message}`)
   }
 }
 
