@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { cleanContent, tagContent } from './lib/aiUtils'
 import { CollapsibleMarkdownSection } from './CollapsibleMarkdownSection'
 import { CrawlResult, FoldStates } from './lib/types'
+import { crawlUrl } from './lib/crawl'
 
 export default function UrlCrawlingSection() {
   const [url, setUrl] = useState('')
@@ -19,12 +20,8 @@ export default function UrlCrawlingSection() {
   const handleCrawl = async () => {
     setLoading(true)
     try {
-      const mockResult: CrawlResult = {
-        content: '# Sample Content\n\nThis is a mock crawl result.',
-        date: new Date().toLocaleDateString(),
-        source: 'example.com',
-      }
-      setCrawlResults(mockResult)
+      const result = await crawlUrl(url)
+      setCrawlResults(result)
     } catch (error) {
       console.error('Crawl failed:', error)
     } finally {
