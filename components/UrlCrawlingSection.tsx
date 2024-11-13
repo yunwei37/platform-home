@@ -36,9 +36,18 @@ export default function UrlCrawlingSection() {
     }))
   }
 
-  const handleAIClean = () => {
-    const cleaned = crawlResults ? cleanContent(crawlResults.content) : ''
-    setCleanedContent(cleaned)
+  const handleAIClean = async () => {
+    if (!crawlResults) return
+
+    setLoading(true)
+    try {
+      const cleaned = await cleanContent(crawlResults.content)
+      setCleanedContent(cleaned)
+    } catch (error) {
+      console.error('Content cleaning failed:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleAITag = () => {
