@@ -1,9 +1,10 @@
 // Import the JSON data
-import independenceRepo from '../independence_repo.json';
+import independenceRepo from '../independence_repo.json'
 
 interface Project {
   title: string
   description: string
+  size?: number
   href?: string
   imgSrc?: string
 }
@@ -11,11 +12,12 @@ interface Project {
 const projectsData: Project[] = independenceRepo.map((repo) => ({
   title: repo.name,
   description: repo.description,
+  size: repo.size,
   imgSrc: '/static/images/time-machine.jpg',
   href: repo.url,
 }))
 
 // Use the data
-console.log(independenceRepo);
+console.log(independenceRepo)
 
 export default projectsData
