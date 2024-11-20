@@ -1,6 +1,6 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: '跨性别中文数字图书馆',
+  title: '中文数字图书馆',
   author: '跨性别端点星计划',
   headerTitle: 'transTerminus',
   description: '希望成为中文跨性别社群历史的见证者',
