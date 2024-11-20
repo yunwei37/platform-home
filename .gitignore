@@ -8,7 +8,7 @@
 !/.yarn/releases
 !/.yarn/plugins
 !/.yarn/sdks
-
+venv
 # testing
 /coverage
 

@@ -3,36 +3,42 @@
     "name": "新闻网页存档与资料库",
     "url": "https://news.transchinese.org/",
     "size": 3439,
+    "description": "保存各类新闻网页存档和相关图片。",
     "last_updated": null
   },
   {
     "name": "文档与精品资源主存档库",
     "url": "https://digital.transchinese.org/",
     "size": 896,
+    "description": "保存各类文档、资料、书籍、论文、报告、演示文稿等与跨性别相关的独立文件，方便查找、下载、分享。",
     "last_updated": null
   },
   {
     "name": "性转相关漫画存档库",
     "url": "https://comic.transchinese.org/",
     "size": 3409,
+    "description": "保存各类性转相关漫画存档和相关图片。",
     "last_updated": null
   },
   {
     "name": "变身文学与小说存档库（剧情向，非限制级，未分类）",
     "url": "https://xnovel.transchinese.org",
     "size": 1387,
+    "description": "保存各类变身、伪娘、性转文学与小说存档，主要关注剧情，主要为较新内容且未分类",
     "last_updated": null
   },
   {
     "name": "变身文学与小说存档库（非限制级，变百或变嫁，已分类）",
     "url": "https://novel.transchinese.org",
     "size": 1647,
+    "description": "保存各类变身、伪娘、性转文学与小说存档，按变百或变嫁内容分类，主要关注剧情。可能较老。",
     "last_updated": null
   },
   {
     "name": "变身文学与小说存档库（限制级）",
     "url": "https://snovel.transchinese.org",
     "size": 3742,
+    "description": "保存各类变身、伪娘、性转文学与小说存档，可能涉及限制级内容。",
     "last_updated": null
   }
 ]
