@@ -38,7 +38,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ totalCollections, totalSize, 
         <div className="mt-8 flex justify-center space-x-8">
           <div className="text-center">
             <div className="text-5xl font-bold text-white">{totalCollections}</div>
-            <div className="mt-2 text-gray-200">收藏库</div>
+            <div className="mt-2 text-gray-200">资料库</div>
           </div>
           <div className="text-center">
             <div className="text-5xl font-bold text-white">{formatNumber(totalSize)}</div>
@@ -48,10 +48,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ totalCollections, totalSize, 
 
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <Link
-            href="/projects"
+            href="/search"
             className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-gray-100"
           >
-            浏览资源库
+            检索资源
           </Link>
           <Link href="/about" className="text-sm font-semibold leading-6 text-white">
             了解更多 <span aria-hidden="true">→</span>
