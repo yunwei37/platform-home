@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server'
 import combinedIndex from 'combined_index.json'
 
 interface Document {
-  url: string
   title: string
   description: string
   author: string
