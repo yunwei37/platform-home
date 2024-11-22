@@ -1,12 +1,12 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: '中文数字图书馆',
-  author: '跨性别端点星计划',
+  title: '多元性别中文数字图书馆',
+  author: '性别端点计划',
   headerTitle: 'transTerminus',
-  description: '希望成为中文跨性别社群历史的见证者',
+  description: '希望成为中文多元性别社群历史的见证者',
   language: 'zh',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://transchinese.org/',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
