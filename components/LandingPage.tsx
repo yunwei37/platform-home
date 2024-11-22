@@ -29,7 +29,7 @@ const features = [
     icon: <FiCalendar className="h-6 w-6" />,
     title: '分析与精选内容', // Analysis and Curated Content
     description: '提供精选内容列表与分析',
-    href: '/analysis',
+    href: '/discover',
   },
 ]
 
