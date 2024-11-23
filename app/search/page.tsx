@@ -1,12 +1,13 @@
 'use client'
 import React, { useState } from 'react'
 import SearchForm from '@/components/search/SearchForm'
-import SearchResults, { Result } from '@/components/search/SearchResults'
+import SearchResults from '@/components/search/SearchResults'
+import { SearchResult } from '@/components/search/SearchResult'
 
 export default function FileSearch() {
   const [isSearching, setIsSearching] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [results, setResults] = useState<Result[]>([])
+  const [results, setResults] = useState<SearchResult[]>([])
 
   const handleSearch = async (query: string) => {
     setError(null)
@@ -18,7 +19,7 @@ export default function FileSearch() {
       if (!response.ok) {
         throw new Error('Search failed')
       }
-      const data: Result[] = await response.json()
+      const data: SearchResult[] = await response.json()
       setResults(data)
     } catch (err) {
       setError('Search failed. Please try again.')

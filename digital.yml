@@ -1,15 +1,15 @@
 independence:
-  - name: 新闻网页存档与资料库
-    description: 保存各类新闻网页存档和相关图片。
+  - name: 跨性别与多元性别新闻网页档案库
+    description: 保存各类跨性别与多元性别相关的新闻网页存档和相关图片。
     path: https://news.transchinese.org/
     url: https://news.transchinese.org/
 
-  - name: 文档与精品资源主存档库
-    description: 保存各类文档、资料、书籍、论文、报告、演示文稿等与跨性别相关的独立文件，方便查找、下载、分享。
+  - name: 跨性别与多元性别文档档案库
+    description: 保存各类资料、书籍、论文、报告、演示文稿等与跨性别和多元性别相关的独立文件。
     path: https://digital.transchinese.org/
     url: https://digital.transchinese.org/
 
-  - name: 性转相关漫画存档库
+  - name: 伪娘与性转相关漫画存档库
     description: 保存各类性转相关漫画存档和相关图片。
     path: https://comic.transchinese.org/
     url: https://comic.transchinese.org/
@@ -24,7 +24,7 @@ independence:
     path: https://xnovel.transchinese.org
     url: https://xnovel.transchinese.org
 
-  - name: 变身文学与小说存档库（限制级）
+  - name: 变身文学与小说存档库三（限制级）
     description: 保存各类变身、伪娘、性转文学与小说存档，可能涉及限制级内容。
     path: https://snovel.transchinese.org
     url: https://snovel.transchinese.org

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import combinedIndex from 'combined_search_index.json'
+import { SearchResult } from '@/components/search/SearchResult'
 
 interface Document {
   type: string
@@ -21,17 +22,8 @@ interface SearchIndex {
   }
 }
 
-interface SearchResult {
-  url: string
-  description: string
-  tags: string[]
-  type: string
-  author: string
-  date: string
-  region: string
-  format: string
-  size: number
-  link: string
+function stripFileExtension(filename: string): string {
+  return filename.replace(/\.[^/.]+$/, '')
 }
 
 function searchDocuments(index: SearchIndex, searchTerm: string): SearchResult[] {
@@ -47,7 +39,7 @@ function searchDocuments(index: SearchIndex, searchTerm: string): SearchResult[]
         document.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
       ) {
         searchResults.push({
-          url: `https://${domain}/${key}`,
+          url: `https://${domain}/${stripFileExtension(key)}`,
           ...document,
         })
       }

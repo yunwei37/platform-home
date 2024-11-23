@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import meta from 'public/meta.json'
+import { LabelWithCount } from '@/components/discover/LabelWithCount'
 import {
   BarChart,
   Bar,
@@ -15,7 +16,6 @@ import {
 export default function FileSearch() {
   const { yearCount, tagCount, regionCount } = meta
 
-  // Sort tags and regions by count, and years by year
   const sortedTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1])
   const sortedYears = Object.entries(yearCount).sort((a, b) => a[0].localeCompare(b[0]))
   const sortedRegions = Object.entries(regionCount).sort((a, b) => b[1] - a[1])
@@ -25,18 +25,21 @@ export default function FileSearch() {
   const visibleTags = sortedTags.filter(([tag, count]) => count >= 30)
   const hiddenTags = sortedTags.filter(([tag, count]) => count < 30)
 
-  // Filter out unknown years and years greater than the current year
   const currentYear = new Date().getFullYear()
   const yearData = sortedYears
     .filter(([year]) => year !== '未知' && parseInt(year) <= currentYear)
     .map(([year, count]) => ({ year, count }))
 
+  const handleTagClick = (tag: string) => {
+    console.log(`Tag clicked: ${tag}`)
+  }
+
+  const handleRegionClick = (region: string) => {
+    console.log(`Region clicked: ${region}`)
+  }
+
   return (
     <div className="mx-auto max-w-7xl p-8">
-      <div className="mb-8 rounded-md bg-amber-50 p-4 text-center text-amber-800">
-        🚧 This feature is currently under development 🚧
-      </div>
-
       <div className="w-full">
         <h2 className="mb-4 text-2xl font-bold">Years</h2>
         <ResponsiveContainer width="100%" height={400}>
@@ -56,15 +59,21 @@ export default function FileSearch() {
           <h2 className="mb-4 text-2xl font-bold">Tags</h2>
           <div className="flex flex-wrap gap-2">
             {visibleTags.map(([tag, count]) => (
-              <div key={tag} className="rounded-md bg-gray-100 p-2 shadow-md">
-                {tag}: {count}
-              </div>
+              <LabelWithCount
+                key={tag}
+                label={tag}
+                count={count}
+                onClick={() => handleTagClick(tag)}
+              />
             ))}
             {showAllTags &&
               hiddenTags.map(([tag, count]) => (
-                <div key={tag} className="rounded-md bg-gray-100 p-2 shadow-md">
-                  {tag}: {count}
-                </div>
+                <LabelWithCount
+                  key={tag}
+                  label={tag}
+                  count={count}
+                  onClick={() => handleTagClick(tag)}
+                />
               ))}
           </div>
           {hiddenTags.length > 0 && (
@@ -78,9 +87,12 @@ export default function FileSearch() {
           <h2 className="mb-4 text-2xl font-bold">Regions</h2>
           <div className="flex flex-wrap gap-2">
             {sortedRegions.map(([region, count]) => (
-              <div key={region} className="rounded-md bg-gray-100 p-2 shadow-md">
-                {region}: {count}
-              </div>
+              <LabelWithCount
+                key={region}
+                label={region}
+                count={count}
+                onClick={() => handleRegionClick(region)}
+              />
             ))}
           </div>
         </div>
