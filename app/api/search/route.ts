@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import combinedIndex from 'combined_index.json'
+import combinedIndex from 'combined_search_index.json'
 
 interface Document {
   title: string
@@ -22,14 +22,17 @@ export async function GET(request: Request) {
   }
 
   const searchResults: { url: string; description: string; tags: string[] }[] = []
-  for (const key in combinedIndex) {
-    const document = combinedIndex[key] as Document
-    if (
-      key.includes(searchTerm) ||
-      document.description.includes(searchTerm) ||
-      document.tags.includes(searchTerm)
-    ) {
-      searchResults.push({ url: key, ...document })
+  for (const domain in combinedIndex) {
+    const index = combinedIndex[domain]
+    for (const key in index) {
+      const document = index[key] as Document
+      if (
+        key.includes(searchTerm) ||
+        document.description.includes(searchTerm) ||
+        document.tags.includes(searchTerm)
+      ) {
+        searchResults.push({ url: 'https://' + domain + '/' + key, ...document })
+      }
     }
   }
   return NextResponse.json(searchResults)
