@@ -72,7 +72,7 @@ export default function LandingPage() {
       {/* Featured Projects Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-          精选列表与博客
+          存档库
         </h2>
         <div className="-m-4 flex flex-wrap">
           {projectsData.map((d) => (

@@ -2,20 +2,27 @@
 import React, { useState } from 'react'
 import SearchForm from '@/components/search/SearchForm'
 import SearchResults from '@/components/search/SearchResults'
-import { SearchResult } from '@/components/search/SearchResult'
+import { SearchResult, SearchParams } from '@/components/search/SearchResult'
 
 export default function FileSearch() {
   const [isSearching, setIsSearching] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [results, setResults] = useState<SearchResult[]>([])
 
-  const handleSearch = async (query: string) => {
+  const handleSearch = async ({ query, domain, tag, year }: SearchParams) => {
     setError(null)
     setIsSearching(true)
     setResults([])
 
     try {
-      const response = await fetch(`/api/search?term=${encodeURIComponent(query)}`)
+      const params = new URLSearchParams({
+        term: query,
+        ...(domain && { domain }),
+        ...(tag && { tag }),
+        ...(year && { year })
+      })
+
+      const response = await fetch(`/api/search?${params.toString()}`)
       if (!response.ok) {
         throw new Error('Search failed')
       }

@@ -10,3 +10,11 @@ export interface SearchResult {
   size: number
   link: string
 }
+
+export interface SearchParams {
+  query: string
+  domain?: string
+  tag?: string
+  year?: string
+  region?: string
+}
