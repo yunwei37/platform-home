@@ -13,6 +13,48 @@ interface Document {
   link: string
 }
 
+interface SearchIndex {
+  [domain: string]: {
+    [key: string]: Document
+  }
+}
+
+interface SearchResult {
+  url: string
+  description: string
+  tags: string[]
+  title: string
+  author: string
+  date: string
+  region: string
+  format: string
+  size: number
+  link: string
+}
+
+function searchDocuments(index: SearchIndex, searchTerm: string): SearchResult[] {
+  const searchResults: SearchResult[] = []
+
+  for (const domain in index) {
+    const domainIndex = index[domain]
+    for (const key in domainIndex) {
+      const document = domainIndex[key]
+      if (
+        key.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        document.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        document.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      ) {
+        searchResults.push({
+          url: `https://${domain}/${key}`,
+          ...document,
+        })
+      }
+    }
+  }
+
+  return searchResults
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const searchTerm = searchParams.get('term')
@@ -21,19 +63,6 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Search term is required' }, { status: 400 })
   }
 
-  const searchResults: { url: string; description: string; tags: string[] }[] = []
-  for (const domain in combinedIndex) {
-    const index = combinedIndex[domain]
-    for (const key in index) {
-      const document = index[key] as Document
-      if (
-        key.includes(searchTerm) ||
-        document.description.includes(searchTerm) ||
-        document.tags.includes(searchTerm)
-      ) {
-        searchResults.push({ url: 'https://' + domain + '/' + key, ...document })
-      }
-    }
-  }
-  return NextResponse.json(searchResults)
+  const results = searchDocuments(combinedIndex as SearchIndex, searchTerm)
+  return NextResponse.json(results)
 }
