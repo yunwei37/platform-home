@@ -2,15 +2,17 @@ import { NextResponse } from 'next/server'
 import combinedIndex from 'combined_search_index.json'
 
 interface Document {
-  title: string
+  type: string
+  format: string
+  size: number
+  md5: string
+  link: string
   description: string
+  'archived date': string
   author: string
   date: string
   region: string
-  format: string
-  size: number
   tags: string[]
-  link: string
 }
 
 interface SearchIndex {
@@ -23,7 +25,7 @@ interface SearchResult {
   url: string
   description: string
   tags: string[]
-  title: string
+  type: string
   author: string
   date: string
   region: string
