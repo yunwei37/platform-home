@@ -12,6 +12,7 @@ const ALL_DOMAINS = DOMAIN_OPTIONS.map((option) => option.value)
 interface SearchFormProps {
   onSearch: (params: SearchParams) => void
   isSearching: boolean
+  initialValues: SearchParams
 }
 
 export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
