@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import combinedIndex from 'combined_search_index.json'
-import { SearchResult } from '@/components/search/SearchResult'
+import { SearchResult, SearchParams } from '@/components/search/SearchResult'
 
 interface Document {
   type: string
@@ -26,17 +26,33 @@ function stripFileExtension(filename: string): string {
   return filename.replace(/\.[^/.]+$/, '')
 }
 
-function searchDocuments(index: SearchIndex, searchTerm: string): SearchResult[] {
+function searchDocuments(index: SearchIndex, params: SearchParams): SearchResult[] {
   const searchResults: SearchResult[] = []
+  const MAX_RESULTS = 600
 
   for (const domain in index) {
+    // Skip if domains specified and current domain not included
+    if (params.domain && !params.domain.includes(domain)) {
+      continue
+    }
+
     const domainIndex = index[domain]
     for (const key in domainIndex) {
+      if (searchResults.length >= MAX_RESULTS) {
+        return searchResults
+      }
+
       const document = domainIndex[key]
+
+      // Check all filter conditions
       if (
-        key.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        document.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        document.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+        (params.query === '' || // Search term match
+          key.toLowerCase().includes(params.query.toLowerCase()) ||
+          document.description.toLowerCase().includes(params.query.toLowerCase()) ||
+          document.tags.some((tag) => tag.toLowerCase().includes(params.query.toLowerCase()))) &&
+        (!params.tag || document.tags.includes(params.tag)) && // Tag match
+        (!params.year || document.date.includes(params.year)) && // Year match
+        (!params.region || document.region.toLowerCase() === params.region.toLowerCase()) // Region match
       ) {
         searchResults.push({
           url: `https://${domain}/${stripFileExtension(key)}`,
@@ -51,12 +67,15 @@ function searchDocuments(index: SearchIndex, searchTerm: string): SearchResult[]
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const searchTerm = searchParams.get('term')
 
-  if (!searchTerm) {
-    return NextResponse.json({ error: 'Search term is required' }, { status: 400 })
+  const searchConfig: SearchParams = {
+    query: searchParams.get('term') || '',
+    domain: searchParams.get('domain') || '',
+    tag: searchParams.get('tag') || undefined,
+    year: searchParams.get('year') || undefined,
+    region: searchParams.get('region') || undefined,
   }
 
-  const results = searchDocuments(combinedIndex as SearchIndex, searchTerm)
+  const results = searchDocuments(combinedIndex as SearchIndex, searchConfig)
   return NextResponse.json(results)
 }

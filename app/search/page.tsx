@@ -9,7 +9,7 @@ export default function FileSearch() {
   const [error, setError] = useState<string | null>(null)
   const [results, setResults] = useState<SearchResult[]>([])
 
-  const handleSearch = async ({ query, domain, tag, year }: SearchParams) => {
+  const handleSearch = async ({ query, domain, tag, year, region }: SearchParams) => {
     setError(null)
     setIsSearching(true)
     setResults([])
@@ -19,7 +19,8 @@ export default function FileSearch() {
         term: query,
         ...(domain && { domain }),
         ...(tag && { tag }),
-        ...(year && { year })
+        ...(year && { year }),
+        ...(region && { region }),
       })
 
       const response = await fetch(`/api/search?${params.toString()}`)

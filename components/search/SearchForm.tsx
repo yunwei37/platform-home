@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { SearchParams } from '@/components/search/SearchResult'
 import projectsData from '@/data/projectsData'
 
-// Create domain options from projectsData
 const DOMAIN_OPTIONS = projectsData.map((project) => ({
   name: project.title,
   value: new URL(project.href || '').host,
 }))
 
-// Get all domain values for initial state
-const ALL_DOMAINS = DOMAIN_OPTIONS.map(option => option.value)
+const ALL_DOMAINS = DOMAIN_OPTIONS.map((option) => option.value)
 
 interface SearchFormProps {
   onSearch: (params: SearchParams) => void
@@ -19,7 +17,7 @@ interface SearchFormProps {
 export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [showAdvanced, setShowAdvanced] = useState(false)
-  const [selectedDomains, setSelectedDomains] = useState<string[]>(ALL_DOMAINS) // Initialize with all domains
+  const [selectedDomains, setSelectedDomains] = useState<string[]>(ALL_DOMAINS)
   const [tag, setTag] = useState('')
   const [year, setYear] = useState('')
   const [region, setRegion] = useState('')
@@ -43,7 +41,6 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-4xl space-y-2">
-      {/* Search input and buttons remain unchanged */}
       <div className="flex gap-4">
         <input
           type="text"
@@ -55,7 +52,7 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
             disabled:cursor-not-allowed disabled:opacity-60
             dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100
             dark:placeholder-gray-400 dark:focus:ring-blue-400"
-          placeholder="Enter your search query"
+          placeholder="请输入搜索关键词"
           disabled={isSearching}
         />
         <button
@@ -65,7 +62,7 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
             text-gray-700 hover:bg-gray-200 dark:bg-gray-700
             dark:text-gray-200 dark:hover:bg-gray-600"
         >
-          {showAdvanced ? 'Hide Filters' : 'Show Filters'}
+          {showAdvanced ? '隐藏筛选' : '显示筛选'}
         </button>
         <button
           type="submit"
@@ -75,16 +72,14 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
             duration-200 hover:bg-blue-700 disabled:cursor-not-allowed
             disabled:opacity-60 dark:bg-blue-500 dark:hover:bg-blue-600"
         >
-          {isSearching ? 'Searching...' : 'Search'}
+          {isSearching ? '搜索中...' : '搜索'}
         </button>
       </div>
 
       {showAdvanced && (
         <div className="flex flex-wrap gap-4 rounded-md border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
-              Archives:
-            </label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">归档：</label>
             <div className="flex flex-wrap gap-3">
               {DOMAIN_OPTIONS.map(({ name, value }) => (
                 <label key={value} className="flex items-center gap-2">
@@ -100,20 +95,19 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
               ))}
             </div>
           </div>
-          {/* Other filter inputs remain unchanged */}
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Tag:</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">标签：</label>
             <input
               type="text"
               value={tag}
               onChange={(e) => setTag(e.target.value)}
               className="w-32 rounded-md border border-gray-300 p-1.5 text-sm
                 dark:border-gray-600 dark:bg-gray-700"
-              placeholder="tag"
+              placeholder="标签"
             />
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Year:</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">年份：</label>
             <input
               type="text"
               value={year}
@@ -124,14 +118,14 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
             />
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Region:</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">地区：</label>
             <input
               type="text"
               value={region}
               onChange={(e) => setRegion(e.target.value)}
               className="w-32 rounded-md border border-gray-300 p-1.5 text-sm
                 dark:border-gray-600 dark:bg-gray-700"
-              placeholder="us-east-1"
+              placeholder="地区"
             />
           </div>
         </div>
