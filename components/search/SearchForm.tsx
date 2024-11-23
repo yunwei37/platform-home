@@ -79,11 +79,17 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
       {showAdvanced && (
         <div className="flex flex-wrap gap-4 rounded-md border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">归档：</label>
+            <label
+              htmlFor="archives"
+              className="text-sm font-medium text-gray-700 dark:text-gray-200"
+            >
+              归档：
+            </label>
             <div className="flex flex-wrap gap-3">
               {DOMAIN_OPTIONS.map(({ name, value }) => (
-                <label key={value} className="flex items-center gap-2">
+                <label key={value} className="flex items-center gap-2" htmlFor={`domain-${value}`}>
                   <input
+                    id={`domain-${value}`}
                     type="checkbox"
                     checked={selectedDomains.includes(value)}
                     onChange={() => handleDomainChange(value)}
@@ -96,8 +102,11 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">标签：</label>
+            <label htmlFor="tag" className="text-sm font-medium text-gray-700 dark:text-gray-200">
+              标签：
+            </label>
             <input
+              id="tag"
               type="text"
               value={tag}
               onChange={(e) => setTag(e.target.value)}
@@ -107,8 +116,11 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
             />
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">年份：</label>
+            <label htmlFor="year" className="text-sm font-medium text-gray-700 dark:text-gray-200">
+              年份：
+            </label>
             <input
+              id="year"
               type="text"
               value={year}
               onChange={(e) => setYear(e.target.value)}
@@ -118,8 +130,14 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
             />
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200">地区：</label>
+            <label
+              htmlFor="region"
+              className="text-sm font-medium text-gray-700 dark:text-gray-200"
+            >
+              地区：
+            </label>
             <input
+              id="region"
               type="text"
               value={region}
               onChange={(e) => setRegion(e.target.value)}
