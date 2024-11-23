@@ -32,7 +32,7 @@ function searchDocuments(index: SearchIndex, params: SearchParams): SearchResult
 
   for (const domain in index) {
     // Skip if domains specified and current domain not included
-    if (params.domain && !params.domain.includes(domain)) {
+    if (params.domain && params.domain != '' && !params.domain.includes(domain)) {
       continue
     }
 

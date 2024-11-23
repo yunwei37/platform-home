@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import meta from 'public/meta.json'
 import { LabelWithCount } from '@/components/discover/LabelWithCount'
 import {
@@ -14,13 +15,13 @@ import {
 } from 'recharts'
 
 export default function FileSearch() {
+  const router = useRouter()
   const { yearCount, tagCount, regionCount } = meta
+  const [showAllTags, setShowAllTags] = useState(false)
 
   const sortedTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1])
   const sortedYears = Object.entries(yearCount).sort((a, b) => a[0].localeCompare(b[0]))
   const sortedRegions = Object.entries(regionCount).sort((a, b) => b[1] - a[1])
-
-  const [showAllTags, setShowAllTags] = useState(false)
 
   const visibleTags = sortedTags.filter(([tag, count]) => count >= 30)
   const hiddenTags = sortedTags.filter(([tag, count]) => count < 30)
@@ -31,11 +32,22 @@ export default function FileSearch() {
     .map(([year, count]) => ({ year, count }))
 
   const handleTagClick = (tag: string) => {
-    console.log(`Tag clicked: ${tag}`)
+    const searchParams = new URLSearchParams({
+      term: '',
+      domain: '',
+      tag: tag,
+    })
+    router.push(`/search?${searchParams.toString()}`)
   }
 
   const handleRegionClick = (region: string) => {
-    console.log(`Region clicked: ${region}`)
+    const searchParams = new URLSearchParams({
+      term: '',
+      domain: '',
+      tag: '',
+      region: region,
+    })
+    router.push(`/search?${searchParams.toString()}`)
   }
 
   return (
