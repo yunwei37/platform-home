@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: '多元性别中文数字图书馆',
-  author: '性别端点计划',
-  headerTitle: 'transTerminus',
+  author: '性与性别多态计划',
+  headerTitle: 'Polymorph',
   description: '希望成为中文多元性别社群历史的见证者',
   language: 'zh',
   theme: 'system', // system, dark or light
@@ -12,7 +12,7 @@ const siteMetadata = {
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.jpg`,
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'yunwei356@gmail.com',
-  github: 'https://github.com/transTerminus',
+  github: 'https://github.com/project-polymorph',
   x: 'https://twitter.com/x',
   // twitter: 'https://twitter.com/Twitter',
   facebook: 'https://facebook.com',
