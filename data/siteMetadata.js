@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://transchinese.org/',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.jpg`,
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'yunwei356@gmail.com',
   github: 'https://github.com/transTerminus',
