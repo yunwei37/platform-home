@@ -1,192 +1,50 @@
 ---
-title: 'Release of Tailwind Nextjs Starter Blog v2.0'
-date: '2023-08-05'
-lastmod: '2023-08-05'
-tags: ['next-js', 'tailwind', 'guide', 'feature']
+title: '在AI淹没网络之前：守护多元性别的数字火种'
+date: '2024-11-27'
+lastmod: '2024-11-27'
 draft: false
-summary: 'Release of Tailwind Nextjs Starter Blog template v2.0, refactored with Nextjs App directory and React Server Components setup.Discover the new features and how to migrate from V1.'
+summary: '在AI淹没人类之前：守护多元性别的数字火种'
 images: ['/static/images/twitter-card.jpg']
 ---
 
-## Introduction
+## 亚文化：被遗忘的记忆化石与文化基因
 
-Welcome to the release of Tailwind Nextjs Starter Blog template v2.0. This release is a major refactor of the codebase to support Nextjs App directory and React Server Components. Read on to discover the new features and how to migrate from V1.
+在数字世界的深处，总有一些看似边缘但实则极其重要的文化现象。变装、CDTS、伪娘、男娘、性转小说——这些貌似荒诞、实则深刻的文化表达，正是人类性别想象最为丰富、最具创造力的实验场。它们不仅仅是娱乐，更是对现有社会秩序最为微妙而锋利的文化批判。
 
-<TOCInline toc={props.toc} exclude="Introduction" />
+想象一个深夜独自创作的性转小说作者。在昏黄的台灯下，他们用每一个字节重构着性别的边界。这不仅仅是写作，而是一种对抗固化规范的静默反抗。每一个变装者用精心的妆容和服饰诉说着内在认同，每一部同人漫画都在挑战生理决定论的牢固堡垒。这些创作者并非只是简单地娱乐，他们是文化边界的探险家，是性别想象的先锋。
 
-## V1 to V2
+在这些看似轻佻的创作背后，蕴含着对人类认同最为深刻的哲学思考。性转小说不仅仅是角色的性别转换，更是对身份、自我、社会期待的多重解构。一个男性角色突然变成女性，不仅仅是生理的转变，更是一种关于权力、压迫、期待的复杂叙事。这些作品用看似戏谑的方式，深入探讨了性别的流动性和社会建构性。
 
-![Github Traffic](/static/images/github-traffic.png)
+## 数据存储：微尘中的文明火种
 
-The template was first released in January 2021 and has since been used by thousands of users. It is featured on [Next.js Templates](https://vercel.com/templates/next.js/tailwind-css-starter-blog), [Tailwind Awesome](https://www.tailwindawesome.com/resources/tailwind-nextjs-starter-blog) among other listing sites. It attracts 200+ unique visitors daily notching 1500-2000 page views, with 1.3k forks and many other clones.
+技术进步带来的数据存储革命，正在悄然改变我们保存文明记忆的方式。一个简单的数字事实：一篇新闻报道可能只占用20千字节，即使包含图片和格式，也不过500千字节。对于当今的存储技术来说，这简直是微不足道的空间。但恰恰是这些看似微不足道的数据，可能蕴含着最珍贵的人类记忆。
 
-Many thanks to the community of users and contributors for making this template a success! I created a small video montage of the blogs (while cleaning up the list in the readme) to showcase the diversity of the blogs created using the template and to celebrate the milestone:
+未来的数据处理能力将以我们现在难以想象的速度增长。想象一下量子存储技术、光存储、DNA数据存储等前沿技术。压缩、存储、检索技术将使得保存海量人类原创内容变得轻而易举。这不仅仅是技术问题，更是一种文化使命。
 
-<video controls>
-  <source
-    src="https://github-production-user-asset-6210df.s3.amazonaws.com/28362229/258559849-2124c81f-b99d-4431-839c-347e01a2616c.webm"
-    type="video/webm"
-  />
-</video>
+我们要保存的不仅仅是严肃的学术论文，还有网络论坛上的随意评论；不仅仅是正式的医疗记录，还有业余创作者的狂想。每一个数字片段都可能是理解某个特定时代、某个特定群体生活状态的关键。一个被遗忘的网络帖子，可能比千篇一律的官方报告更能呈现那个时代的真实肌理。
 
-Version 2 builds on the success of the previous version and introduces many new features and improvements. The codebase has been refactored to support Next.js App directory and React Server Components. Markdown / MDX is now processed using Contentlayer, a type-safe content SDK that validates and transforms your content into type-safe JSON data. It integrates with Pliny, a new library that provides out of the box Next.js components to enhance your static site with analytics, comments and newsletter subscription. A new command palette (⌘-k) search component is also added to the template.
+## AI生成内容：虚构现实的隐秘工厂
 
-Let's dive into the new features and improvements in V2.
+人工智能正在获得前所未有的内容生成能力，这种能力已经超出了普通人的想象范围。在短短两三个小时内，一个先进的AI系统可以生成数百篇看似真实的新闻报道，并编织一个令人惊叹的虚构世界。
 
-## Next.js App Directory and React Server Components
+这种AI生成的平行现实是如此精密、如此令人信服，以至于几乎可以以假乱真。想象这样一个虚构世界：精心设计的个人主页背后是复杂的社交网络，看似真实的新闻报道环环相扣，貌似严谨的学术研究相互佐证，模拟的访谈记录栩栩如生。如果某个组织或势力希望制造一个特定的社会叙事，比如"跨性别群体在社会中一切顺利"，他们完全可以在极短时间内生成数以千计看似真实的"证据"。
 
-Now that [Next.js App router](https://nextjs.org/docs/app) is finally stable and is mostly feature compatible with Page Router, the codebase has been migrated to new setup. This allows for a hybrid rendering approach, with the use of React Server Components generated on the server side for faster page loads and smaller bundle sizes, while retaining the ability to sprinkle in client side React components for interactivity.[^1]
+在信息过载的时代，真相变得越来越难以辨别。当AI生成的内容数量远远超过人类原创内容时，我们将面临一个可怕的现实：我们感知世界的方式本身可能已经被算法重新定义。
 
-With addition powers comes a [new paradigm](https://nextjs.org/docs/getting-started/react-essentials) to learn. I have migrated the codebase to make use of the new features as much as possible. This includes changes in the folder structure, splitting components into server vs client components, leveraging server side data fetching and using the recommended [Metadata](https://nextjs.org/docs/app/building-your-application/optimizing/metadata) API for SEO discoverability.
+## 超越技术的人性困境
 
-While this simplifies the codebase to some extent, it makes migration from the old codebase more difficult. If you are looking to migrate, I recommend starting from a fresh template and copying over your customizations and existing content. See the [migration recommendations](#migration-recommendations) section for more details.
+关于AI的发展，最为吊诡的是它在处理高度逻辑化问题时的卓越，却在理解人类最为私密、最为复杂的情感维度时显得笨拙。让AI真正理解小众性癖、色情内容，或者建立真正的亲密关系，可能比让它理解抽象的数学模型还要困难得多。
 
-## Typescript First
+这正是人类独特性的魅力所在。AI可能会生成海量内容，但它永远无法复制那些充满矛盾、充满激情、充满不确定性的人类体验。一个变装者在镜子前犹豫的眼神，一个跨性别者第一次以真实性别现身的颤抖，一个性转小说作者在键盘前的迟疑——这些都是AI无法模仿的人性细微之处。
 
-The codebase has been migrated to Typescript. While the previous version of the template was available in both Javascript and Typescript, I decided to reduce the maintenance burden and focus on Typescript. This also allows for better type checking and code completion in IDEs.
+## 面向未来的文化抢救
 
-Typescript is also a perfect match with our new type-safe markdown processor - Contentlayer.
+我们正站在一个技术巨变的十字路口。未来的信息世界可能已经被AI重塑，我们通过互联网观察到的一切，可能都是某些组织、算法精心策划的叙事。在某种程度上，我们已经生活在一个类似《黑客帝国》的世界：感知本身已经被算法中介。
 
-## Contentlayer
+但正是在这样的时代，我们更要保持对人类多样性的敬意。收集、保存、传播那些真实的、原创的、充满血肉和情感的内容，已经不仅仅是一种文化行为，更是一种文明的抢救行动。
 
-[Contentlayer](https://www.contentlayer.dev/) is a content SDK that validates and transforms your content into type-safe JSON data that you can easily import into your application. It makes working with local markdown or MDX files a breeze. This replaces `MDX-bundler` and our own markdown processing workflow.
+每一个被保存下来的声音，都是对单一叙事的反抗。每一段被记录的经历，都是对算法世界的一次微小但意义深远的反击。在这个充满不确定性的未来，我们唯一可以确定的是：人类的创造力、想象力和反抗精神是无法被完全算法化的。
 
-First, a content source is defined, specifying the name of the document type, the source where it is located along with the frontmatter fields and any additional computed fields that should be generated as part of the process.
+因为记忆，我们才真正存在。
 
-```ts:contentlayer.config.ts
-export const Blog = defineDocumentType(() => ({
-  name: 'Blog',
-  filePathPattern: 'blog/**/*.mdx',
-  contentType: 'mdx',
-  fields: {
-    title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
-    tags: { type: 'list', of: { type: 'string' }, default: [] },
-    ...
-  },
-  computedFields: {
-    readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
-    slug: {
-      type: 'string',
-      resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
-    }
-    ...
-  },
-}))
-```
-
-Contentlayer then processes the MDX files with our desired markdown remark or rehype plugins, validates the schema, generate type definitions and output json files that can be easily imported in our pages. Hot reloading comes out of the box, so edits to the markdown files will be reflected in the browser immediately!
-
-## Pliny
-
-A large reason for the popularity of the template was its customizability and integration with other services from analytics providers to commenting solutions. However, this means that a lot of boilerplate code has to be co-located within the template even if the user does not use the feature. Updates and bug fixes had to be copied manually to the user's codebase.
-
-To solve this, I have abstracted the logic to a separate repository - [Pliny](https://github.com/timlrx/pliny). Pliny provides out of the box Next.js components to enhance static sites:
-
-- Analytics
-  - Google Analytics
-  - Plausible Analytics
-  - Simple Analytics
-  - Umami Analytics
-  - Posthog
-- Comments
-  - Disqus
-  - Giscus
-  - Utterances
-- Newsletter (uses Next 13 API Routes)
-  - Buttondown
-  - Convertkit
-  - Email Octopus
-  - Klaviyo
-  - Mailchimp
-  - Revue
-- Command palette search with tailwind style sheet
-  - Algolia
-  - Kbar (local search)
-- UI utility components
-  - Bleed
-  - Newsletter / Blog Newsletter
-  - Pre / Code block
-  - Table of Contents
-
-Choose your preferred service by modifying `siteMetadata.js` and changing the appropriate fields. For example to change from Umami Analytics to Plausible, we can change the following fields:
-
-```diff-js:siteMetadata.js
-analytics: {
--   umamiAnalytics: {
--     // We use an env variable for this site to avoid other users cloning our analytics ID
--     umamiWebsiteId: process.env.NEXT_UMAMI_ID, // e.g. 123e4567-e89b-12d3-a456-426614174000
--   },
-+    plausibleAnalytics: {
-+      plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
-+    },
-},
-```
-
-Changes in the configuration file gets propagated to the components automatically. No modification to the template is required.
-
-Under the hood, Pliny exports high level components such as `<Analytics analyticsConfig={analyticsConfig}/>` and `<Comments commentsConfig={commentsConfig}/>` which takes in a configuration object and renders the appropriate component. Since the layouts are defined on the server side, Next.js is able to use the configuration object to determine which component to render and send only the required component bundle to the client.
-
-## New Search Component
-
-What's a blog in 2023 without a command palette search bar?
-
-One of the most highly requested features have been added 🎉! The search component supports 2 search providers - Algolia and Kbar local search.
-
-### Algolia
-
-[Algolia Docsearch](https://docsearch.algolia.com/) is popular free service used across many documentation websites. It automatically scrapes the website that has is submitted for indexing and makes the search result available via a beautiful dialog modal. The pliny component is greatly inspired by the Docusaurus implementation and comes with a stylesheet that is compatible with the Tailwind CSS theme.
-
-### Kbar
-
-[Kbar](https://github.com/timc1/kbar) is a fast, portable, and extensible cmd+k interface. The pliny implementation uses kbar to create a local search dialog box. The component loads a JSON file, default `search.json`, that was created in the contentlayer build process. Try pressing ⌘-k or ctrl-k to see the search bar in action!
-
-## Styling and Layout Updates
-
-### Theming
-
-`tailwind.config.js` has been updated to use tailwind typography defaults where possible and to use the built-in support for dark mode via the `prose-invert` class. This replaces the previous `prose-dark` class and configuration.
-
-The primary theme color is updated from `teal` to `pink` and the primary gray theme from `neutral` to `gray`.
-
-Inter is now replaced with Space Grotesk as the default font.
-
-### New Layouts
-
-Layout components available in the `layouts` directory, provide a simple way to customize the look and feel of the blog.[^2]
-
-The downside of building a popular template is that you start seeing multiple similar sites everywhere 😆. While users are encouraged to customized the layouts to their liking, having more layout options that are easily switchable promotes diversity and perhaps can be a good starting point for further customizations.
-
-In v2, I added a new post layout - `PostBanner`. It features a large banner image and a centered content container. Check out "[Pictures of Canada](/blog/pictures-of-canada)" blog post which has been updated to use the new layout.
-
-The default blog listing layout has also been updated to include a side bar with blog tags. The search bar in the previous layout has been replace with the new command palette search. To switch back to the old layout, simply change the pages that use the `ListLayoutWithTags` component back to the original `ListLayout`.
-
-## Migration Recommendations
-
-Due to the large changes in directory structure, setup and tooling, I recommend starting from a fresh template and copying existing content, followed by incrementally migrating changes over to the new template.
-
-Styling changes should be relatively minor and can be copied over from the old `tailwind.config.js` to the new one. If copying over, you might need to add back the `prose-dark` class to components that opt into tailwind typography styling. Do modify the font import in the root layout component to use the desired font of choice.
-
-Changes to the MDX processing pipeline and schema can be easily ported to the new Contentlayer setup. If there are changes to the frontmatter fields, you can modify the document type in `contentlayer.config.ts` to include the new fields. Custom plugins can be added to the `remarkPlugins` and `rehypePlugins` properties in the `makeSource` export of `contentlayer.config.ts`.
-
-Markdown layouts are no longer sourced automatically from the `layouts` directory. Instead, they have to be specified in the `layouts` object defined in `blog/[...slug]/page.tsx`.[^3]
-
-To port over larger components or pages, I recommend first specificing it as a client component by using the `"use client"` directive. Once it renders correctly, you can split the interactive components (parts that rely on `use` hooks) as a client component and keep the remaining code as a server component. Consult the comprehensive Next.js [migration guide](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#migrating-from-pages-to-app) for more details.
-
-## Conclusion
-
-I hope you enjoy the new features and improvements in V2. If you have any feedback or suggestions, feel free to open an issue or reach out to me on [Twitter](https://twitter.com/timlrx).
-
-## Support
-
-Using the template? Support this effort by giving a star on GitHub, sharing your own blog and giving a shoutout on Twitter or be a project [sponsor](https://github.com/sponsors/timlrx).
-
-## Licence
-
-[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/main/LICENSE) © [Timothy Lin](https://www.timrlx.com)
-
-[^1]: The previous version injects Preact into the production build. However, this is no longer possible as it does not support React Server Components. While overall bundle size has increased to about 85kB, most of the content can be pre-rendered on the server side, resulting in a low first contentful paint and time to interactive. Using React throughtout also leads to more consistent behavior with external libraries and components.
-
-[^2]: This is different from Next.js App Directory layouts and are best thought of as reusable React containers.
-
-[^3]: This takes advantage of Server Components by making it simple to specify the layout of choice in the markdown file and match against the `layouts` object which is then used to render the appropriate layout component.
+> 注：本文是 AI 写的。

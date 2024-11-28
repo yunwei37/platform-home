@@ -25,9 +25,14 @@ independence:
     url: https://xnovel.transchinese.org
 
   - name: 变身文学与小说存档库三（限制级）
-    description: 保存各类变身、伪娘、性转文学与小说存档，可能涉及限制级内容。
+    description: 保存各类 CDTS、变身、伪娘、性转文学与小说存档，可能涉及限制级内容。
     path: https://snovel.transchinese.org
     url: https://snovel.transchinese.org
+
+  - name: eunuch 相关文档与小说（限制级）
+    description: 保存各类阉割、去势、人体改造相关文档与小说档案，涉及限制级内容。
+    path: https://enovel.transchinese.org
+    url: https://enovel.transchinese.org
 
 ignore:
   - '.*\.github.*'

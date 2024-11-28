@@ -79,7 +79,7 @@ export default function LandingPage() {
             <Card
               key={d.title}
               title={d.title}
-              description={d.href}
+              description={null}
               imgSrc={null}
               href={d.href}
               contentSize={d.size}
