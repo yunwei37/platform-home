@@ -7,7 +7,7 @@ interface Document {
   format: string
   size: number
   md5: string
-  link: string
+  link: string | null // Allow null values
   description: string
   'archived date': string
   author: string
@@ -54,9 +54,20 @@ function searchDocuments(index: SearchIndex, params: SearchParams): SearchResult
         (!params.year || document.date.includes(params.year)) && // Year match
         (!params.region || document.region.toLowerCase() === params.region.toLowerCase()) // Region match
       ) {
+        const link: string = document.link
+          ? `https://${domain}/${stripFileExtension(key)}`
+          : 'unknown'
         searchResults.push({
-          url: `https://${domain}/${stripFileExtension(key)}`,
-          ...document,
+          url: link, // Handle null links
+          description: document.description,
+          tags: document.tags,
+          type: document.type,
+          author: document.author,
+          date: document.date,
+          region: document.region,
+          format: document.format,
+          size: document.size,
+          link: link,
         })
       }
     }
