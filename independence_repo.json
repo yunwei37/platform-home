@@ -23,7 +23,7 @@
   {
     "name": "变身文学与小说存档库一（非限制级，未分类）",
     "url": "https://novel.transchinese.org",
-    "size": 2443,
+    "size": 2317,
     "description": "保存各类变身、伪娘、性转文学与小说存档，主要关注剧情，主要为较新内容且未分类",
     "last_updated": null
   },
@@ -53,6 +53,13 @@
     "url": "https://enovel.transchinese.org",
     "size": 1699,
     "description": "保存各类阉割、去势、人体改造相关文档与小说档案，涉及限制级内容。",
+    "last_updated": null
+  },
+  {
+    "name": "TSF 变身文学档案（CDBOOK 短篇）",
+    "url": "https://archive.cdtsf.com",
+    "size": 10105,
+    "description": "包含伪娘、男娘、变性、TS 变身文学与跨性别相关小说（成人与限制级）的内容，主要来自 CDBOOK 网站存档。",
     "last_updated": null
   }
 ]
