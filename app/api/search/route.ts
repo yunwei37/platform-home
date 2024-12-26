@@ -50,7 +50,6 @@ function searchDocuments(index: SearchIndex, params: SearchParams): SearchResult
           key.toLowerCase().includes(params.query.toLowerCase()) ||
           document.description.toLowerCase().includes(params.query.toLowerCase()) ||
           document.tags.some((tag) => tag.toLowerCase().includes(params.query.toLowerCase()))) &&
-        (!params.tag || document.tags.includes(params.tag)) && // Tag match
         (!params.year || document.date.includes(params.year)) && // Year match
         (!params.region || document.region.toLowerCase() === params.region.toLowerCase()) // Region match
       ) {
