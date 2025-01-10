@@ -2,9 +2,19 @@ import React, { useState } from 'react'
 import { SearchParams } from '@/components/search/SearchResult'
 import projectsData from '@/data/projectsData'
 
+type ContentType = 'resource' | 'comic' | 'novel'
+
+const CONTENT_TYPES: { label: string; value: ContentType }[] = [
+  { label: '资源与新闻', value: 'resource' },
+  { label: '漫画', value: 'comic' },
+  { label: '小说', value: 'novel' },
+]
+
 const DOMAIN_OPTIONS = projectsData.map((project) => ({
   name: project.title,
   value: new URL(project.href || '').host,
+  type: project.type,
+  is_restricted: project.is_restricted,
 }))
 
 const ALL_DOMAINS = DOMAIN_OPTIONS.map((option) => option.value)
@@ -18,10 +28,32 @@ interface SearchFormProps {
 export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [showAdvanced, setShowAdvanced] = useState(false)
-  const [selectedDomains, setSelectedDomains] = useState<string[]>(ALL_DOMAINS)
+  const [selectedDomains, setSelectedDomains] = useState<string[]>(
+    DOMAIN_OPTIONS.filter(
+      (option) => option.type === 'resource' && !option.is_restricted
+    ).map((option) => option.value)
+  )
+  const [activeType, setActiveType] = useState<ContentType>('resource')
+  const [includeRestricted, setIncludeRestricted] = useState(false)
   const [tag, setTag] = useState('')
   const [year, setYear] = useState('')
   const [region, setRegion] = useState('')
+
+  const handleTypeChange = (type: ContentType) => {
+    setActiveType(type)
+    const newDomains = DOMAIN_OPTIONS.filter(
+      (option) => option.type === type && (includeRestricted || !option.is_restricted)
+    ).map((option) => option.value)
+    setSelectedDomains(newDomains)
+  }
+
+  const handleRestrictedChange = (checked: boolean) => {
+    setIncludeRestricted(checked)
+    const newDomains = DOMAIN_OPTIONS.filter(
+      (option) => option.type === activeType && (checked || !option.is_restricted)
+    ).map((option) => option.value)
+    setSelectedDomains(newDomains)
+  }
 
   const handleDomainChange = (domain: string) => {
     setSelectedDomains((prev) =>
@@ -41,7 +73,40 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-4xl space-y-2">
+    <form onSubmit={handleSubmit} className="w-full max-w-4xl space-y-4">
+      {/* Type Tabs and Restricted Checkbox */}
+      <div className="flex items-center justify-between">
+        <div className="flex space-x-1 rounded-lg bg-gray-100 p-1 dark:bg-gray-700">
+          {CONTENT_TYPES.map(({ label, value }) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => handleTypeChange(value)}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                activeType === value
+                  ? 'bg-white text-blue-600 shadow dark:bg-gray-800 dark:text-blue-400'
+                  : 'text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-600'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <label className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            checked={includeRestricted}
+            onChange={(e) => handleRestrictedChange(e.target.checked)}
+            className="h-4 w-4 rounded border-gray-300 text-blue-600 
+              focus:ring-blue-500 dark:border-gray-600"
+          />
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+            包含限制级内容
+          </span>
+        </label>
+      </div>
+
+      {/* Search Input and Buttons */}
       <div className="flex gap-4">
         <input
           type="text"
@@ -77,6 +142,7 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
         </button>
       </div>
 
+      {/* Advanced Filters */}
       {showAdvanced && (
         <div className="flex flex-wrap gap-4 rounded-md border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
           <div className="flex flex-col gap-2">
@@ -87,7 +153,9 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
               归档：
             </label>
             <div className="flex flex-wrap gap-3">
-              {DOMAIN_OPTIONS.map(({ name, value }) => (
+              {DOMAIN_OPTIONS.filter(
+                (option) => includeRestricted || !option.is_restricted
+              ).map(({ name, value, type }) => (
                 <label key={value} className="flex items-center gap-2" htmlFor={`domain-${value}`}>
                   <input
                     id={`domain-${value}`}
@@ -97,7 +165,11 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
                     className="rounded border-gray-300 text-blue-600 
                       focus:ring-blue-500 dark:border-gray-600"
                   />
-                  <span className="text-sm text-gray-700 dark:text-gray-200">{name}</span>
+                  <span className={`text-sm ${
+                    type === activeType ? 'font-medium text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-200'
+                  }`}>
+                    {name}
+                  </span>
                 </label>
               ))}
             </div>
