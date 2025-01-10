@@ -29,7 +29,7 @@ const features = [
     icon: <FiCalendar className="h-6 w-6" />,
     title: '分析与精选内容', // Analysis and Curated Content
     description: '提供精选内容列表与分析',
-    href: '/analysis',
+    href: '/discover',
   },
 ]
 
@@ -72,14 +72,14 @@ export default function LandingPage() {
       {/* Featured Projects Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-          精选列表与博客
+          存档库
         </h2>
         <div className="-m-4 flex flex-wrap">
           {projectsData.map((d) => (
             <Card
               key={d.title}
               title={d.title}
-              description={d.href}
+              description={null}
               imgSrc={null}
               href={d.href}
               contentSize={d.size}

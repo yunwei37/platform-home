@@ -1,52 +1,113 @@
 'use client'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import meta from 'public/meta.json'
+import { LabelWithCount } from '@/components/discover/LabelWithCount'
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
 
 export default function FileSearch() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isSearching, setIsSearching] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+  const { yearCount, tagCount, regionCount } = meta
+  const [showAllTags, setShowAllTags] = useState(false)
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
-    setIsSearching(true)
+  const sortedTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1])
+  const sortedYears = Object.entries(yearCount).sort((a, b) => a[0].localeCompare(b[0]))
+  const sortedRegions = Object.entries(regionCount).sort((a, b) => b[1] - a[1])
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      console.log('Search query:', searchQuery)
-    } catch (err) {
-      setError('Search failed. Please try again.')
-    } finally {
-      setIsSearching(false)
-    }
+  const visibleTags = sortedTags.filter(([tag, count]) => count >= 30)
+  const hiddenTags = sortedTags.filter(([tag, count]) => count < 30)
+
+  const currentYear = new Date().getFullYear()
+  const yearData = sortedYears
+    .filter(([year]) => year !== '未知' && parseInt(year) <= currentYear)
+    .map(([year, count]) => ({ year, count }))
+
+  const handleTagClick = (tag: string) => {
+    const searchParams = new URLSearchParams({
+      term: '',
+      domain: '',
+      tag: tag,
+    })
+    router.push(`/search?${searchParams.toString()}`)
+  }
+
+  const handleRegionClick = (region: string) => {
+    const searchParams = new URLSearchParams({
+      term: '',
+      domain: '',
+      tag: '',
+      region: region,
+    })
+    router.push(`/search?${searchParams.toString()}`)
   }
 
   return (
     <div className="mx-auto max-w-7xl p-8">
-      <div className="mb-8 rounded-md bg-amber-50 p-4 text-center text-amber-800">
-        🚧 This feature is currently under development 🚧
+      <div className="w-full">
+        <h2 className="mb-4 text-2xl font-bold">Years</h2>
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart data={yearData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="year" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="count" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
 
       <div className="flex flex-col items-center gap-6">
-        <h1 className="text-2xl font-bold">File Search</h1>
-        <form onSubmit={handleSearch} className="w-full max-w-2xl gap-4">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="rounded-md border border-gray-300 p-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
-            placeholder="Enter your search query"
-            disabled={isSearching}
-          />
-          <button
-            type="submit"
-            disabled={isSearching}
-            className="rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {isSearching ? 'Searching...' : 'Search'}
-          </button>
-          {error && <p className="text-center text-red-600">{error}</p>}
-        </form>
+        <div className="w-full">
+          <h2 className="mb-4 text-2xl font-bold">Tags</h2>
+          <div className="flex flex-wrap gap-2">
+            {visibleTags.map(([tag, count]) => (
+              <LabelWithCount
+                key={tag}
+                label={tag}
+                count={count}
+                onClick={() => handleTagClick(tag)}
+              />
+            ))}
+            {showAllTags &&
+              hiddenTags.map(([tag, count]) => (
+                <LabelWithCount
+                  key={tag}
+                  label={tag}
+                  count={count}
+                  onClick={() => handleTagClick(tag)}
+                />
+              ))}
+          </div>
+          {hiddenTags.length > 0 && (
+            <button onClick={() => setShowAllTags(!showAllTags)} className="mt-4 text-blue-500">
+              {showAllTags ? 'Show Less' : 'Show More'}
+            </button>
+          )}
+        </div>
+
+        <div className="w-full">
+          <h2 className="mb-4 text-2xl font-bold">Regions</h2>
+          <div className="flex flex-wrap gap-2">
+            {sortedRegions.map(([region, count]) => (
+              <LabelWithCount
+                key={region}
+                label={region}
+                count={count}
+                onClick={() => handleRegionClick(region)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

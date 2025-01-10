@@ -47,3 +47,5 @@ yarn-error.log*
 .contentlayer
 combined_index.json
 meta.json
+
+.search_index/

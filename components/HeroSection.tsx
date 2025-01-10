@@ -30,8 +30,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ totalCollections, totalSize, 
           多元性别中文数字图书馆
         </h1>
         <p className="mt-6 text-lg leading-8 text-gray-100">
-          我们只是一个 AI 观测站, 希望铭记历史上和现在正在发生的一切。互联网没有记忆，但是人和 AI
-          有。
+          用技术保存历史，用文化点亮未来：一个致力于传承、传播跨性别与多元性别的知识与故事的中文平台。
         </p>
 
         {/* New Stats Section */}
