@@ -20,7 +20,7 @@ const siteMetadata = {
   // linkedin: 'https://www.linkedin.com',
   // threads: 'https://www.threads.net',
   // instagram: 'https://www.instagram.com',
-  medium: 'https://medium.com/@yusen356',
+  medium: 'https://medium.com/@transchinese',
   bluesky: 'https://bsky.app/profile/transchinese.bsky.social',
   locale: 'en-US',
   // set to true if you want a navbar fixed to the top
