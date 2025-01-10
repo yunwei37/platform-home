@@ -88,11 +88,10 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
               key={value}
               type="button"
               onClick={() => handleTypeChange(value)}
-              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-                activeType === value
-                  ? 'bg-white text-blue-600 shadow dark:bg-gray-800 dark:text-blue-400'
-                  : 'text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-600'
-              }`}
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${activeType === value
+                ? 'bg-white text-blue-600 shadow dark:bg-gray-800 dark:text-blue-400'
+                : 'text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-600'
+                }`}
             >
               {label}
             </button>
@@ -171,9 +170,8 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
                     className="rounded border-gray-300 text-blue-600 
                       focus:ring-blue-500 dark:border-gray-600"
                   />
-                  <span className={`text-sm ${
-                    type === activeType ? 'font-medium text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-200'
-                  }`}>
+                  <span className={`text-sm ${type === activeType ? 'font-medium text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-200'
+                    }`}>
                     {name}
                   </span>
                 </label>
