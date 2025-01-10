@@ -7,6 +7,8 @@ interface Project {
   size?: number
   href?: string
   imgSrc?: string
+  is_restricted: boolean,
+  type: string
 }
 
 const projectsData: Project[] = independenceRepo.map((repo) => ({
@@ -15,6 +17,8 @@ const projectsData: Project[] = independenceRepo.map((repo) => ({
   size: repo.size,
   imgSrc: '/static/images/time-machine.jpg',
   href: repo.url,
+  is_restricted: repo.is_restricted,
+  type: repo.type
 }))
 
 // Use the data

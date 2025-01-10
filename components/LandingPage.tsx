@@ -6,6 +6,15 @@ import Card from '@/components/Card'
 import projectsData from '@/data/projectsData'
 import HeroSection from '@/components/HeroSection'
 
+interface Project {
+  title: string
+  href: string
+  size?: number
+  is_restricted: boolean
+}
+
+const projects: Project[] = projectsData
+
 const features = [
   {
     icon: <FiBook className="h-6 w-6" />,
@@ -72,19 +81,42 @@ export default function LandingPage() {
       {/* Featured Projects Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-          存档库
+          一般存档库
         </h2>
         <div className="-m-4 flex flex-wrap">
-          {projectsData.map((d) => (
-            <Card
-              key={d.title}
-              title={d.title}
-              description={null}
-              imgSrc={null}
-              href={d.href}
-              contentSize={d.size}
-            />
-          ))}
+          {projectsData
+            .filter((d: any) => !d.is_restricted)
+            .map((d) => (
+              <Card
+                key={d.title}
+                title={d.title}
+                description={null}
+                imgSrc={null}
+                href={d.href}
+                contentSize={d.size}
+              />
+            ))}
+        </div>
+      </div>
+
+      {/* Restricted Projects Section */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          限制级存档库
+        </h2>
+        <div className="-m-4 flex flex-wrap">
+          {projectsData
+            .filter((d: any) => d.is_restricted)
+            .map((d) => (
+              <Card
+                key={d.title}
+                title={d.title}
+                description={null}
+                imgSrc={null}
+                href={d.href}
+                contentSize={d.size}
+              />
+            ))}
         </div>
       </div>
     </div>
