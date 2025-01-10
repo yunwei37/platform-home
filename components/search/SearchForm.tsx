@@ -44,9 +44,7 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
     const suggestedDomains = DOMAIN_OPTIONS.filter(
       (option) => option.type === type && (includeRestricted || !option.is_restricted)
     ).map((option) => option.value)
-    if (selectedDomains.length === 0) {
-      setSelectedDomains(suggestedDomains)
-    }
+    setSelectedDomains(suggestedDomains)
   }
 
   const handleRestrictedChange = (checked: boolean) => {
