@@ -5,7 +5,7 @@ import projectsData from '@/data/projectsData'
 type ContentType = 'resource' | 'comic' | 'novel'
 
 const CONTENT_TYPES: { label: string; value: ContentType }[] = [
-  { label: '资源与新闻', value: 'resource' },
+  { label: '资源', value: 'resource' },
   { label: '漫画', value: 'comic' },
   { label: '小说', value: 'novel' },
 ]
@@ -41,18 +41,24 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
 
   const handleTypeChange = (type: ContentType) => {
     setActiveType(type)
-    const newDomains = DOMAIN_OPTIONS.filter(
+    const suggestedDomains = DOMAIN_OPTIONS.filter(
       (option) => option.type === type && (includeRestricted || !option.is_restricted)
     ).map((option) => option.value)
-    setSelectedDomains(newDomains)
+    if (selectedDomains.length === 0) {
+      setSelectedDomains(suggestedDomains)
+    }
   }
 
   const handleRestrictedChange = (checked: boolean) => {
     setIncludeRestricted(checked)
-    const newDomains = DOMAIN_OPTIONS.filter(
-      (option) => option.type === activeType && (checked || !option.is_restricted)
-    ).map((option) => option.value)
-    setSelectedDomains(newDomains)
+    if (!checked) {
+      setSelectedDomains((prev) =>
+        prev.filter((domain) => {
+          const option = DOMAIN_OPTIONS.find((opt) => opt.value === domain)
+          return option && !option.is_restricted
+        })
+      )
+    }
   }
 
   const handleDomainChange = (domain: string) => {
