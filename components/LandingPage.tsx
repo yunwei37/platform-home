@@ -13,7 +13,7 @@ interface Project {
   is_restricted: boolean
 }
 
-const projects: Project[] = projectsData
+const projects: Project[] = projectsData as Project[]
 
 const features = [
   {
@@ -84,7 +84,7 @@ export default function LandingPage() {
         </h2>
         <div className="-m-4 flex flex-wrap">
           {projectsData
-            .filter((d: any) => !d.is_restricted)
+            .filter((d) => !d.is_restricted)
             .map((d) => (
               <Card
                 key={d.title}
@@ -106,7 +106,7 @@ export default function LandingPage() {
         </h2>
         <div className="-m-4 flex flex-wrap">
           {projectsData
-            .filter((d: any) => d.is_restricted)
+            .filter((d) => d.is_restricted)
             .map((d) => (
               <Card
                 key={d.title}

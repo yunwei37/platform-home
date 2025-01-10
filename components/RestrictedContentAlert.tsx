@@ -24,22 +24,39 @@ export default function RestrictedContentAlert({
         }
     }, [isOpen])
 
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (isOpen && e.key === 'Escape') {
+                onClose()
+            }
+        }
+        document.addEventListener('keydown', handleEscape)
+        return () => document.removeEventListener('keydown', handleEscape)
+    }, [isOpen, onClose])
+
     if (!isOpen) return null
 
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center"
-            onClick={onClose}
+            role="presentation"
         >
-            <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" />
+            <button 
+                className="fixed inset-0 bg-black bg-opacity-50 transition-opacity cursor-default" 
+                onClick={onClose}
+                aria-label="Close dialog"
+            />
             <div
                 className="relative mx-4 w-full max-w-md transform rounded-lg bg-white p-6 shadow-xl transition-all duration-300 ease-in-out dark:bg-gray-800"
-                onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="dialog-title"
             >
                 <div className="absolute right-4 top-4">
                     <button
                         onClick={onClose}
                         className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+                        aria-label="关闭"
                     >
                         <span className="sr-only">关闭</span>
                         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -48,7 +65,7 @@ export default function RestrictedContentAlert({
                     </button>
                 </div>
                 <div className="mt-2">
-                    <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">限制级内容提醒</h3>
+                    <h3 id="dialog-title" className="mb-4 text-lg font-medium text-gray-900 dark:text-white">限制级内容提醒</h3>
                     <div className="mb-6 text-gray-700 dark:text-gray-300">
                         <p>您即将访问限制级内容。请确认：</p>
                         <ul className="mt-2 list-inside list-disc space-y-2">

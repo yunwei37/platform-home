@@ -4,7 +4,16 @@ import Link from './Link'
 import { useState } from 'react'
 import RestrictedContentAlert from './RestrictedContentAlert'
 
-const Card = ({ title, description, imgSrc, href, contentSize, isRestricted = false }) => {
+interface CardProps {
+  title: string
+  description: string | null
+  imgSrc: string | null
+  href: string
+  contentSize?: number
+  isRestricted?: boolean
+}
+
+const Card = ({ title, description, imgSrc, href, contentSize, isRestricted = false }: CardProps) => {
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   const handleClick = (e) => {
@@ -32,6 +41,14 @@ const Card = ({ title, description, imgSrc, href, contentSize, isRestricted = fa
         className={`${imgSrc && 'h-full'
           } relative overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700`}
         onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            handleClick(e)
+          }
+        }}
+        role="button"
+        tabIndex={0}
       >
         {contentSize && (
           <div className="absolute right-3 top-3 z-10">
