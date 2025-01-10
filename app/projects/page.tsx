@@ -13,7 +13,7 @@ export default function Projects() {
             档案集合
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            各类档案集合，包括文档、资料、新闻网页等。
+            各类档案集合，包括文档、资料、新闻网页等。部分内容可能需要确认年龄。
           </p>
         </div>
         <div className="container py-12">
@@ -26,6 +26,7 @@ export default function Projects() {
                 imgSrc={d.imgSrc}
                 href={d.href}
                 contentSize={d.size}
+                isRestricted={d.is_restricted}
               />
             ))}
           </div>

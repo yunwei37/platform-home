@@ -20,7 +20,7 @@ const features = [
     icon: <FiBook className="h-6 w-6" />,
     title: '丰富的收藏',
     description: '访问数万份多元性别相关的文章、资料和艺术作品',
-    href: '/projects', // Add links for each feature
+    href: '/projects',
   },
   {
     icon: <FiSearch className="h-6 w-6" />,
@@ -36,7 +36,7 @@ const features = [
   },
   {
     icon: <FiCalendar className="h-6 w-6" />,
-    title: '分析与精选内容', // Analysis and Curated Content
+    title: '分析与精选内容',
     description: '提供精选内容列表与分析',
     href: '/discover',
   },
@@ -46,7 +46,6 @@ export default function LandingPage() {
   const totalCollections = projectsData.length
   const totalSize = projectsData.reduce((sum, project) => sum + (project.size || 0), 0)
 
-  // Format number to include commas and handle large numbers
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat('zh-CN').format(num)
   }
@@ -94,6 +93,7 @@ export default function LandingPage() {
                 imgSrc={null}
                 href={d.href}
                 contentSize={d.size}
+                isRestricted={false}
               />
             ))}
         </div>
@@ -115,6 +115,7 @@ export default function LandingPage() {
                 imgSrc={null}
                 href={d.href}
                 contentSize={d.size}
+                isRestricted={true}
               />
             ))}
         </div>
