@@ -113,7 +113,7 @@ export default function LandingPage() {
                 title={d.title}
                 description={null}
                 imgSrc={null}
-                href={d.href}
+                href={d.href || ''}
                 contentSize={d.size}
                 isRestricted={true}
               />
