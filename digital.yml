@@ -21,7 +21,7 @@ independence:
     type: comic
 
   - name: 变身文学与小说存档库一（非限制级，未分类）
-    description: 保存各类变身、伪娘、性转文学与小说存档，主要关注剧情，主要为较新内容且未分类
+    description: 保存各类变身、伪娘、性转文学与小说存档，主要关注剧情，按短篇长篇分类。
     path: https://novel.transchinese.org
     url: https://novel.transchinese.org
     is_restricted: false
@@ -34,7 +34,14 @@ independence:
     is_restricted: false
     type: novel
 
-  - name: 变身文学与小说存档库三（限制级）
+  - name: 变身文学与小说存档库三（非限制级，持续更新）
+    description: 保存各类 CDTS、变身、伪娘、性转文学与变身小说存档，持续更新中。
+    path: https://unovel.transchinese.org
+    url: https://unovel.transchinese.org
+    is_restricted: false
+    type: novel
+
+  - name: 成人变身文学与小说存档库（限制级）
     description: 保存各类 CDTS、变身、伪娘、性转文学与小说存档，可能涉及限制级内容。
     path: https://snovel.cdtsf.com
     url: https://snovel.cdtsf.com

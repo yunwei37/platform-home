@@ -79,14 +79,14 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-4xl space-y-4">
       {/* Type Tabs and Restricted Checkbox */}
-      <div className="flex items-center justify-between">
-        <div className="flex space-x-1 rounded-lg bg-gray-100 p-1 dark:bg-gray-700">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex space-x-1 rounded-lg bg-gray-100 p-1 dark:bg-gray-700 overflow-x-auto">
           {CONTENT_TYPES.map(({ label, value }) => (
             <button
               key={value}
               type="button"
               onClick={() => handleTypeChange(value)}
-              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${activeType === value
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${activeType === value
                 ? 'bg-white text-blue-600 shadow dark:bg-gray-800 dark:text-blue-400'
                 : 'text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
@@ -110,7 +110,7 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
       </div>
 
       {/* Search Input and Buttons */}
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="text"
           value={searchQuery}
@@ -124,30 +124,32 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
           placeholder="请输入搜索关键词"
           disabled={isSearching}
         />
-        <button
-          type="button"
-          onClick={() => setShowAdvanced(!showAdvanced)}
-          className="rounded-md bg-gray-100 px-4 py-3 text-sm
-            text-gray-700 hover:bg-gray-200 dark:bg-gray-700
-            dark:text-gray-200 dark:hover:bg-gray-600"
-        >
-          {showAdvanced ? '隐藏筛选' : '显示筛选'}
-        </button>
-        <button
-          type="submit"
-          disabled={isSearching}
-          className="rounded-md bg-blue-600 px-6 py-3 
-            text-base font-medium text-white transition-colors
-            duration-200 hover:bg-blue-700 disabled:cursor-not-allowed
-            disabled:opacity-60 dark:bg-blue-500 dark:hover:bg-blue-600"
-        >
-          {isSearching ? '搜索中...' : '搜索'}
-        </button>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setShowAdvanced(!showAdvanced)}
+            className="flex-1 sm:flex-none rounded-md bg-gray-100 px-4 py-3 text-sm
+              text-gray-700 hover:bg-gray-200 dark:bg-gray-700
+              dark:text-gray-200 dark:hover:bg-gray-600"
+          >
+            {showAdvanced ? '隐藏筛选' : '显示筛选'}
+          </button>
+          <button
+            type="submit"
+            disabled={isSearching}
+            className="flex-1 sm:flex-none rounded-md bg-blue-600 px-6 py-3 
+              text-base font-medium text-white transition-colors
+              duration-200 hover:bg-blue-700 disabled:cursor-not-allowed
+              disabled:opacity-60 dark:bg-blue-500 dark:hover:bg-blue-600"
+          >
+            {isSearching ? '搜索中...' : '搜索'}
+          </button>
+        </div>
       </div>
 
       {/* Advanced Filters */}
       {showAdvanced && (
-        <div className="flex flex-wrap gap-4 rounded-md border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
+        <div className="flex flex-col gap-4 rounded-md border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
           <div className="flex flex-col gap-2">
             <label
               htmlFor="archives"
@@ -176,50 +178,52 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
               ))}
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <label htmlFor="tag" className="text-sm font-medium text-gray-700 dark:text-gray-200">
-              标签：
-            </label>
-            <input
-              id="tag"
-              type="text"
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-              className="w-32 rounded-md border border-gray-300 p-1.5 text-sm
-                dark:border-gray-600 dark:bg-gray-700"
-              placeholder="标签"
-            />
-          </div>
-          <div className="flex items-center gap-2">
-            <label htmlFor="year" className="text-sm font-medium text-gray-700 dark:text-gray-200">
-              年份：
-            </label>
-            <input
-              id="year"
-              type="text"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              className="w-20 rounded-md border border-gray-300 p-1.5 text-sm
-                dark:border-gray-600 dark:bg-gray-700"
-              placeholder="2024"
-            />
-          </div>
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor="region"
-              className="text-sm font-medium text-gray-700 dark:text-gray-200"
-            >
-              地区：
-            </label>
-            <input
-              id="region"
-              type="text"
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
-              className="w-32 rounded-md border border-gray-300 p-1.5 text-sm
-                dark:border-gray-600 dark:bg-gray-700"
-              placeholder="地区"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex items-center gap-2">
+              <label htmlFor="tag" className="text-sm font-medium text-gray-700 dark:text-gray-200 min-w-[3rem]">
+                标签：
+              </label>
+              <input
+                id="tag"
+                type="text"
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
+                className="flex-1 rounded-md border border-gray-300 p-1.5 text-sm
+                  dark:border-gray-600 dark:bg-gray-700"
+                placeholder="标签"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <label htmlFor="year" className="text-sm font-medium text-gray-700 dark:text-gray-200 min-w-[3rem]">
+                年份：
+              </label>
+              <input
+                id="year"
+                type="text"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                className="flex-1 rounded-md border border-gray-300 p-1.5 text-sm
+                  dark:border-gray-600 dark:bg-gray-700"
+                placeholder="2024"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <label
+                htmlFor="region"
+                className="text-sm font-medium text-gray-700 dark:text-gray-200 min-w-[3rem]"
+              >
+                地区：
+              </label>
+              <input
+                id="region"
+                type="text"
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                className="flex-1 rounded-md border border-gray-300 p-1.5 text-sm
+                  dark:border-gray-600 dark:bg-gray-700"
+                placeholder="地区"
+              />
+            </div>
           </div>
         </div>
       )}
