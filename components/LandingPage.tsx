@@ -137,7 +137,7 @@ export default function LandingPage({ posts }) {
                 限制级存档库
               </h2>
               <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
-                包含成人内容的多元性别相关资料，归档整理在 <Link href="https://cdtsf.com/" className="text-blue-500 hover:underline">多元性别成人图书馆</Link> 社区中，由本站提供检索服务。（展开查看更多）
+                包含成人内容的多元性别相关资料，归档整理在 <Link href="https://cdtsf.com/" className="text-blue-500 hover:underline">多元性别成人图书馆</Link> 社区中，由本站提供检索服务。包含成人小说， eunuch （太监或阉割）、扶她与双性、性转幻想等内容。（展开查看更多）
               </p>
             </div>
             {restrictedExpanded ? (
