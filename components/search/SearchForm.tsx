@@ -5,7 +5,7 @@ import projectsData from '@/data/projectsData'
 type ContentType = 'resource' | 'comic' | 'novel'
 
 const CONTENT_TYPES: { label: string; value: ContentType }[] = [
-  { label: '资源', value: 'resource' },
+  { label: '文档', value: 'resource' },
   { label: '漫画', value: 'comic' },
   { label: '小说', value: 'novel' },
 ]
