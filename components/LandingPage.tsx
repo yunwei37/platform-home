@@ -5,6 +5,9 @@ import { FiBook, FiSearch, FiUsers, FiCalendar } from 'react-icons/fi'
 import Card from '@/components/Card'
 import projectsData from '@/data/projectsData'
 import HeroSection from '@/components/HeroSection'
+import siteMetadata from '@/data/siteMetadata'
+import NewsletterForm from 'pliny/ui/NewsletterForm'
+import PostList from '@/components/PostList'
 
 interface Project {
   title: string
@@ -13,6 +16,7 @@ interface Project {
   is_restricted: boolean
 }
 
+const MAX_DISPLAY = 5
 const projects: Project[] = projectsData as Project[]
 
 const features = [
@@ -42,7 +46,7 @@ const features = [
   },
 ]
 
-export default function LandingPage() {
+export default function LandingPage({ posts }) {
   const totalCollections = projectsData.length
   const totalSize = projectsData.reduce((sum, project) => sum + (project.size || 0), 0)
 
@@ -79,7 +83,7 @@ export default function LandingPage() {
 
       {/* Featured Projects Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+        <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
           一般存档库
         </h2>
         <div className="-m-4 flex flex-wrap">
@@ -101,9 +105,12 @@ export default function LandingPage() {
 
       {/* Restricted Projects Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+        <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
           限制级存档库
         </h2>
+        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+          这些内容可能包含成人内容，归档整理在 <Link href="https://cdtsf.com/">多元性别成人图书馆</Link> 中。
+        </p>
         <div className="-m-4 flex flex-wrap">
           {projectsData
             .filter((d) => d.is_restricted)
@@ -120,6 +127,27 @@ export default function LandingPage() {
             ))}
         </div>
       </div>
+      
+      {/* Latest Blogs Section */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="divide-y divide-gray-200 dark:divide-gray-700">
+          <div className="space-y-2 pb-8 pt-6 md:space-y-5">
+            <h2 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-4xl md:leading-14">
+              最新博客
+            </h2>
+            <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+              {siteMetadata.description}
+            </p>
+          </div>
+          <PostList posts={posts} maxDisplay={MAX_DISPLAY} />
+        </div>
+        {siteMetadata.newsletter?.provider && (
+          <div className="flex items-center justify-center pt-4">
+            <NewsletterForm />
+          </div>
+        )}
+      </div>
+
     </div>
   )
 }
