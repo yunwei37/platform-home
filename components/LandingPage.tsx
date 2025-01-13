@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { FiBook, FiSearch, FiUsers, FiCalendar } from 'react-icons/fi'
+import { FiBook, FiSearch, FiUsers, FiCalendar, FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { useState } from 'react'
 import Card from '@/components/Card'
 import projectsData from '@/data/projectsData'
 import HeroSection from '@/components/HeroSection'
@@ -47,6 +48,8 @@ const features = [
 ]
 
 export default function LandingPage({ posts }) {
+  const [generalExpanded, setGeneralExpanded] = useState(false)
+  const [restrictedExpanded, setRestrictedExpanded] = useState(false)
   const totalCollections = projectsData.length
   const totalSize = projectsData.reduce((sum, project) => sum + (project.size || 0), 0)
 
@@ -81,51 +84,86 @@ export default function LandingPage({ posts }) {
         </div>
       </div>
 
-      {/* Featured Projects Section */}
+      {/* General Archives Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
-          一般存档库
-        </h2>
-        <div className="-m-4 flex flex-wrap">
-          {projectsData
-            .filter((d) => !d.is_restricted)
-            .map((d) => (
-              <Card
-                key={d.title}
-                title={d.title}
-                description={null}
-                imgSrc={null}
-                href={d.href || ''}
-                contentSize={d.size}
-                isRestricted={false}
-              />
-            ))}
+        <div className="mb-8">
+          <button
+            onClick={() => setGeneralExpanded(!generalExpanded)}
+            className="flex w-full items-center justify-between rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800"
+          >
+            <div>
+              <h2 className="text-left text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+                一般存档库
+              </h2>
+              <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
+                包含学术论文、调研报告、手册指南、政策法规、新闻报道、个人故事、社区文档、漫画、性转小说与变身文学、影音视频等适合所有年龄段的多元性别相关内容。（展开查看更多）
+              </p>
+            </div>
+            {generalExpanded ? (
+              <FiChevronUp className="h-6 w-6" />
+            ) : (
+              <FiChevronDown className="h-6 w-6" />
+            )}
+          </button>
         </div>
+        {generalExpanded && (
+          <div className="-m-4 flex flex-wrap">
+            {projectsData
+              .filter((d) => !d.is_restricted)
+              .map((d) => (
+                <Card
+                  key={d.title}
+                  title={d.title}
+                  description={null}
+                  imgSrc={null}
+                  href={d.href || ''}
+                  contentSize={d.size}
+                  isRestricted={false}
+                />
+              ))}
+          </div>
+        )}
       </div>
 
-      {/* Restricted Projects Section */}
+      {/* Restricted Archives Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
-          限制级存档库
-        </h2>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          这些内容可能包含成人内容，归档整理在 <Link href="https://cdtsf.com/">多元性别成人图书馆</Link> 中。
-        </p>
-        <div className="-m-4 flex flex-wrap">
-          {projectsData
-            .filter((d) => d.is_restricted)
-            .map((d) => (
-              <Card
-                key={d.title}
-                title={d.title}
-                description={null}
-                imgSrc={null}
-                href={d.href || ''}
-                contentSize={d.size}
-                isRestricted={true}
-              />
-            ))}
+        <div className="mb-8">
+          <button
+            onClick={() => setRestrictedExpanded(!restrictedExpanded)}
+            className="flex w-full items-center justify-between rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800"
+          >
+            <div>
+              <h2 className="text-left text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+                限制级存档库
+              </h2>
+              <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
+                包含成人内容的多元性别相关资料，归档整理在 <Link href="https://cdtsf.com/" className="text-blue-500 hover:underline">多元性别成人图书馆</Link> 社区中，由本站提供检索服务。（展开查看更多）
+              </p>
+            </div>
+            {restrictedExpanded ? (
+              <FiChevronUp className="h-6 w-6" />
+            ) : (
+              <FiChevronDown className="h-6 w-6" />
+            )}
+          </button>
         </div>
+        {restrictedExpanded && (
+          <div className="-m-4 flex flex-wrap">
+            {projectsData
+              .filter((d) => d.is_restricted)
+              .map((d) => (
+                <Card
+                  key={d.title}
+                  title={d.title}
+                  description={null}
+                  imgSrc={null}
+                  href={d.href || ''}
+                  contentSize={d.size}
+                  isRestricted={true}
+                />
+              ))}
+          </div>
+        )}
       </div>
       
       {/* Latest Blogs Section */}
