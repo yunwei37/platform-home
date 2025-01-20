@@ -6,7 +6,7 @@
     "url": "https://news.transchinese.org/",
     "is_restricted": false,
     "type": "resource",
-    "size": 3824,
+    "size": 3807,
     "last_updated": null
   },
   {
@@ -96,7 +96,7 @@
     "url": "https://archive.cdtsf.com",
     "is_restricted": true,
     "type": "novel",
-    "size": 10104,
+    "size": 10523,
     "last_updated": null
   }
 ]
