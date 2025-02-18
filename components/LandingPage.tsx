@@ -106,7 +106,7 @@ export default function LandingPage({ posts }) {
                 <Card
                   key={d.title}
                   title={d.title}
-                  description={null}
+                  description={d.description}
                   imgSrc={null}
                   href={d.href || ''}
                   contentSize={d.size}
@@ -138,7 +138,7 @@ export default function LandingPage({ posts }) {
                 <Card
                   key={d.title}
                   title={d.title}
-                  description={null}
+                  description={d.description}
                   imgSrc={null}
                   href={d.href || ''}
                   contentSize={d.size}
