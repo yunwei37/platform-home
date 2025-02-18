@@ -149,8 +149,6 @@ export default function LandingPage({ posts }) {
         </details>
       </div>
 
-      <Community />
-
       {/* Latest Blogs Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -164,12 +162,14 @@ export default function LandingPage({ posts }) {
           </div>
           <PostList posts={posts} maxDisplay={MAX_DISPLAY} />
         </div>
-        {siteMetadata.newsletter?.provider && (
+        {/* {siteMetadata.newsletter?.provider && (
           <div className="flex items-center justify-center pt-4">
             <NewsletterForm />
           </div>
-        )}
+        )} */}
       </div>
+      <Community />
+
 
     </div>
   )
