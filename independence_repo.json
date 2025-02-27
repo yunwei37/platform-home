@@ -6,7 +6,7 @@
     "url": "https://news.transchinese.org/",
     "is_restricted": false,
     "type": "resource",
-    "size": 3884,
+    "size": 3883,
     "last_updated": null
   },
   {
@@ -16,7 +16,7 @@
     "url": "https://digital.transchinese.org/",
     "is_restricted": false,
     "type": "resource",
-    "size": 1371,
+    "size": 1379,
     "last_updated": null
   },
   {
@@ -46,7 +46,7 @@
     "url": "https://xnovel.transchinese.org",
     "is_restricted": false,
     "type": "novel",
-    "size": 1649,
+    "size": 1651,
     "last_updated": null
   },
   {
