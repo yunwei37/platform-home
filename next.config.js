@@ -57,13 +57,14 @@ const securityHeaders = [
 const output = process.env.EXPORT ? 'export' : undefined
 const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
+const trailingSlash = process.env.TRAILING_SLASH ? true : undefined
 
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
-  return plugins.reduce((acc, next) => next(acc), {
+  const nextConfig = plugins.reduce((acc, next) => next(acc), {
     output,
     basePath,
     reactStrictMode: true,
@@ -96,5 +97,8 @@ module.exports = () => {
 
       return config
     },
+    trailingSlash,
   })
+
+  return nextConfig
 }
