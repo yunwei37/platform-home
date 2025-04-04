@@ -28,9 +28,7 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [selectedDomains, setSelectedDomains] = useState<string[]>(
-    DOMAIN_OPTIONS.filter(
-      (option) => option.type === 'resource' && !option.is_restricted
-    ).map((option) => option.value)
+    ALL_DOMAINS
   )
   const [activeType, setActiveType] = useState<ContentType>('all')
   const [tag, setTag] = useState('')
@@ -39,9 +37,10 @@ export default function SearchForm({ onSearch, isSearching }: SearchFormProps) {
 
   const handleTypeChange = (type: ContentType) => {
     setActiveType(type)
-    const suggestedDomains = DOMAIN_OPTIONS.filter(
-      (option) => option.type === type
-    ).map((option) => option.value)
+    const suggestedDomains = type === 'all' 
+      ? ALL_DOMAINS
+      : DOMAIN_OPTIONS.filter(option => option.type === type)
+          .map(option => option.value)
     setSelectedDomains(suggestedDomains)
   }
 
