@@ -92,10 +92,9 @@ export default function LandingPage({ posts }) {
             一般存档库
           </h2>
           <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
-            包含学术论文、调研报告、手册指南、政策法规、新闻报道、个人故事、社区文档、漫画、性转小说与变身文学、影音视频等适合所有年龄段的多元性别相关内容。（展开查看更多）
+            包含学术论文、调研报告、手册指南、政策法规、新闻报道、个人故事、社区文档、漫画、性转小说与变身文学、影音视频等适合所有年龄段的多元性别相关内容。
           </p>
         </div>
-        <FiChevronDown className="h-6 w-6 transition-transform group-open:rotate-180" />
         <div className="-m-4 mt-4 flex flex-wrap">
           {projectsData
             .filter((d) => !d.is_restricted)
@@ -115,7 +114,8 @@ export default function LandingPage({ posts }) {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
           <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
-            本站仅作为非盈利性存档使用，不包含成人内容与可能存在色情描述的资料。成人内容请访问 <Link href="https://cdtsf.com/" className="text-blue-500 hover:underline">多元性别成人图书馆</Link> 由其他团队维护，不对中国大陆用户开放。
+            本站仅作为非盈利性存档使用，不包含成人内容与可能存在色情描述的资料。
+            {/* 本站仅作为非盈利性存档使用，不包含成人内容与可能存在色情描述的资料。成人内容请访问 <Link href="https://cdtsf.com/" className="text-blue-500 hover:underline">多元性别成人图书馆</Link> 由其他团队维护，不对中国大陆用户开放。 */}
           </p>
         </div>
       </div>
