@@ -98,11 +98,11 @@ function SearchContent() {
   return (
     <div className="mx-auto max-w-7xl p-8">
       <div className="mb-8 rounded-md bg-amber-50 p-4 text-center text-amber-800">
-        🚧 Experimental 🚧
+        更完善的搜索功能请访问 <a href="https://tsindex.org">tsindex.org 多元性别搜索引擎</a>
       </div>
 
       <div className="flex flex-col items-center gap-6">
-        <h1 className="text-2xl font-bold">File Search</h1>
+        <h1 className="text-2xl font-bold">条目检索</h1>
         <SearchForm
           onSearch={handleSearch}
           isSearching={isSearching}
