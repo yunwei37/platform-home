@@ -87,38 +87,34 @@ export default function LandingPage({ posts }) {
 
       {/* General Archives Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <details className="group mb-8">
-          <summary className="flex w-full cursor-pointer items-center justify-between rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800 list-none">
-            <div>
-              <h2 className="text-left text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
-                一般存档库
-              </h2>
-              <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
-                包含学术论文、调研报告、手册指南、政策法规、新闻报道、个人故事、社区文档、漫画、性转小说与变身文学、影音视频等适合所有年龄段的多元性别相关内容。（展开查看更多）
-              </p>
-            </div>
-            <FiChevronDown className="h-6 w-6 transition-transform group-open:rotate-180" />
-          </summary>
-          <div className="-m-4 mt-4 flex flex-wrap">
-            {projectsData
-              .filter((d) => !d.is_restricted)
-              .map((d) => (
-                <Card
-                  key={d.title}
-                  title={d.title}
-                  description={d.description}
-                  imgSrc={null}
-                  href={d.href || ''}
-                  contentSize={d.size}
-                  isRestricted={false}
-                />
-              ))}
-          </div>
-        </details>
+        <div>
+          <h2 className="text-left text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+            一般存档库
+          </h2>
+          <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
+            包含学术论文、调研报告、手册指南、政策法规、新闻报道、个人故事、社区文档、漫画、性转小说与变身文学、影音视频等适合所有年龄段的多元性别相关内容。（展开查看更多）
+          </p>
+        </div>
+        <FiChevronDown className="h-6 w-6 transition-transform group-open:rotate-180" />
+        <div className="-m-4 mt-4 flex flex-wrap">
+          {projectsData
+            .filter((d) => !d.is_restricted)
+            .map((d) => (
+              <Card
+                key={d.title}
+                title={d.title}
+                description={d.description}
+                imgSrc={null}
+                href={d.href || ''}
+                contentSize={d.size}
+                isRestricted={false}
+              />
+            ))}
+        </div>
       </div>
 
       {/* Restricted Archives Section */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      {/* <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <details className="group mb-8">
           <summary className="flex w-full cursor-pointer items-center justify-between rounded-lg bg-white p-4 shadow-lg dark:bg-gray-800 list-none">
             <div>
@@ -147,7 +143,7 @@ export default function LandingPage({ posts }) {
               ))}
           </div>
         </details>
-      </div>
+      </div> */}
 
       {/* Latest Blogs Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
