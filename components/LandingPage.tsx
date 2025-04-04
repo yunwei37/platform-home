@@ -115,7 +115,7 @@ export default function LandingPage({ posts }) {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
           <p className="text-left mt-2 text-gray-600 dark:text-gray-300">
-            本站不包含成人内容与可能存在色情描述的资料，并不提供检索服务。成人内容请访问 <Link href="https://cdtsf.com/" className="text-blue-500 hover:underline">多元性别成人图书馆</Link> 由其他团队维护，不对中国大陆用户开放。
+            本站仅作为非盈利性存档使用，不包含成人内容与可能存在色情描述的资料。成人内容请访问 <Link href="https://cdtsf.com/" className="text-blue-500 hover:underline">多元性别成人图书馆</Link> 由其他团队维护，不对中国大陆用户开放。
           </p>
         </div>
       </div>
