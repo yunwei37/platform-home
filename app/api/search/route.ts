@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import combinedIndex from 'combined_search_index.json'
 import { SearchResult, SearchParams } from '@/components/search/SearchResult'
 
+export const dynamic = 'force-static'
+
 interface Document {
   type: string
   format: string

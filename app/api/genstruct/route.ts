@@ -2,6 +2,8 @@
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
+export const dynamic = 'force-static'
+
 // Get config from env
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 const MODEL_NAME = process.env.OPENAI_MODEL || 'gpt-4o-mini'
