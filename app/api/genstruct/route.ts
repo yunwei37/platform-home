@@ -17,6 +17,16 @@ const openai = new OpenAI({
 })
 
 export async function POST(request: Request) {
+  // For static export builds, return a static error message
+  if (process.env.EXPORT) {
+    return NextResponse.json(
+      {
+        error: 'This API is not available in static exports. Please use a server deployment for AI features.',
+      },
+      { status: 503 }
+    )
+  }
+
   try {
     // Parse request body
     const { prompt, jsonSchema } = await request.json()

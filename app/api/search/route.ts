@@ -76,6 +76,12 @@ function searchDocuments(index: SearchIndex, params: SearchParams): SearchResult
 }
 
 export async function GET(request: Request) {
+  // For static export builds, return empty array
+  // In production, this route won't be used - search should be done client-side
+  if (process.env.EXPORT) {
+    return NextResponse.json([])
+  }
+
   const { searchParams } = new URL(request.url)
 
   const searchConfig: SearchParams = {
